@@ -1,4 +1,4 @@
 val grid = widgets ?: WidgetFactory.transform(ScreenGridRequest().read("projects/${bone.dataSource.item.projectId}"), bone).also {
                             widgets = it
-                            cachedSeasons = (it[1] as? DefaultGroupScreenWidget)?.getSeasons()
+                            cachedSeasons = if (widgets?.get(1) is GroupScreenWidget) (widgets?.get(1) as GroupScreenWidget<GroupScreenWidgetModel>?)?.getSeasons() else null
                         }
