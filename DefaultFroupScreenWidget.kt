@@ -1,8 +1,8 @@
-Before
+//After
 fun DefaultGroupScreenWidget.getSeasons(): SeasonsData? {
 
     val curGroup = getData().firstOrNull() ?: return null
 
-    return SeasonsData(subWidgets.filter { it is ProjectTracksWidget } as List<ProjectTracksWidget>,
+    return SeasonsData(subWidgets.mapNotNull { it as? ProjectTracksWidget },
         GroupScreenWidgetModel(curGroup.title,  curGroup.subtitles.filter { it -> it.group == "Seasons" }.toTypedArray()))
 }
