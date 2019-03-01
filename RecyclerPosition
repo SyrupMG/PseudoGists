@@ -1,14 +1,10 @@
-  private suspend fun initTvProgramRecycler() {
+    private suspend fun initTvProgramRecycler() {
 
         val widgetItems = bone.getWidgets().expand().items()
 
         var playingPosition = -1
 
         playingPosition = widgetItems.indexOfFirst { (it.value as? ScheduleEventWrapper)?.schedule?.isPlayNow() ?: false }
-        for (i in 0 until widgetItems.size){
-            widgetItems[i].value as? ScheduleEventWrapper ?: continue
-            if((widgetItems[i].value as ScheduleEventWrapper).schedule.isPlayNow()) playingPosition = i
-        }
 
         val tvProgramsAdapter = WidgetAdapter(bone.getWidgets(), bone, requireContext())
 
