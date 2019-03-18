@@ -23,6 +23,10 @@ class TextBoxesField @JvmOverloads constructor(context: Context, attrs: Attribut
     //endregion
 
     private var isPlainText = false
+    set(value) {
+        field = value
+        if(field) showPassword() else hidePassword()
+    }
 
     private fun showPassword() {
         setEndIcon(R.drawable.ic_hide_password)
@@ -36,13 +40,7 @@ class TextBoxesField @JvmOverloads constructor(context: Context, attrs: Attribut
         editText.setSelection(editText.text.length)
     }
 
-    fun changePasswordVisibility() {
-        isPlainText = if (isPlainText) {
-            hidePassword()
-            false
-        } else {
-            showPassword()
-            true
-        }
+   fun changePasswordVisibility() {
+        isPlainText = !isPlainText
     }
 }
